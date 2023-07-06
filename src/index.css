@@ -4,14 +4,23 @@
 }
 
 .slick-slider {
-  width: 90%; /* Update the width as desired */
+  width: 90%;
   margin: 0 auto;
+}
+
+.slick-slide {
+  position: relative;
 }
 
 .slick-slide img {
   width: 200px;
   height: 200px;
   margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.slick-slide:hover img {
+  transform: scale(1.2);
 }
 
 .slick-slide p {
@@ -19,3 +28,32 @@
   margin: 1rem 0;
 }
 
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: white; /* Update the color value to white */
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}
+
+.carousel-nav button {
+  background-color: yellowgreen;
+  border: 2rem;
+  color: blue;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}

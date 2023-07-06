@@ -25,8 +25,8 @@ function App() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    prevArrow: <button className="carousel-nav">Previous</button>,
-    nextArrow: <button className="carousel-nav">Next</button>,
+    prevArrow: <button className="carousel-nav carousel-prev">Previous</button>,
+    nextArrow: <button className="carousel-nav carousel-next">Next</button>,
   };
 
   return (
