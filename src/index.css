@@ -35,7 +35,7 @@
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.3);
   border: none;
-  color: white; /* Update the color value to white */
+  color: white;
   font-size: 2rem;
   padding: 0.5rem;
   cursor: pointer;
@@ -51,9 +51,17 @@
 
 .carousel-nav button {
   background-color: yellowgreen;
-  border: 2rem;
+  border: none; /* Update the border value */
   color: blue;
   font-size: 2rem;
   padding: 0.5rem;
   cursor: pointer;
+}
+
+.pokemon-name {
+  font-size: 5rem;
+}
+
+.pokemon-data {
+  font-size: .5rem;
 }

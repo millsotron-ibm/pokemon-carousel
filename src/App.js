@@ -12,7 +12,19 @@ function App() {
       .get("https://pokeapi.co/api/v2/pokemon?limit=20")
       .then((response) => {
         const { results } = response.data;
-        setPokemonData(results);
+        const pokemonPromises = results.map((pokemon) =>
+          axios.get(pokemon.url)
+        );
+        Promise.all(pokemonPromises)
+          .then((pokemonResponses) => {
+            const pokemonDetails = pokemonResponses.map(
+              (response) => response.data
+            );
+            setPokemonData(pokemonDetails);
+          })
+          .catch((error) => {
+            console.error("Error fetching Pokémon data:", error);
+          });
       })
       .catch((error) => {
         console.error("Error fetching Pokémon data:", error);
@@ -25,8 +37,14 @@ function App() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    prevArrow: <button className="carousel-nav carousel-prev">Previous</button>,
-    nextArrow: <button className="carousel-nav carousel-next">Next</button>,
+    prevArrow: <button className="carousel-nav">Previous</button>,
+    nextArrow: <button className="carousel-nav">Next</button>,
+  };
+
+  const openPokemonPage = (name) => {
+    const searchQuery = encodeURIComponent(`${name} Pokémon`);
+    const googleSearchURL = `https://www.google.com/search?q=${searchQuery}`;
+    window.open(googleSearchURL, "_blank");
   };
 
   return (
@@ -34,14 +52,15 @@ function App() {
       <h1>Pokémon Carousel</h1>
       <Slider {...sliderSettings}>
         {pokemonData.map((pokemon) => (
-          <div key={pokemon.name}>
+          <div
+            key={pokemon.id}
+            onClick={() => openPokemonPage(pokemon.name)}
+          >
             <img
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url
-                .split("/")[6]
-                .replace(/[^0-9]/g, "")}.png`}
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
               alt={pokemon.name}
             />
-            <p>{pokemon.name}</p>
+            <p className="pokemon-name">{pokemon.name}</p>
           </div>
         ))}
       </Slider>
