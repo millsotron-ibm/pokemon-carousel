@@ -6,10 +6,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   const [pokemonData, setPokemonData] = useState([]);
+  const [filteredPokemonData, setFilteredPokemonData] = useState([]);
+  const [selectedType, setSelectedType] = useState("");
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=20")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=50")
       .then((response) => {
         const { results } = response.data;
         const pokemonPromises = results.map((pokemon) =>
@@ -31,6 +33,17 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (selectedType === "") {
+      setFilteredPokemonData(pokemonData);
+    } else {
+      const filteredPokemon = pokemonData.filter((pokemon) =>
+        pokemon.types.some((type) => type.type.name === selectedType)
+      );
+      setFilteredPokemonData(filteredPokemon);
+    }
+  }, [selectedType, pokemonData]);
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -47,11 +60,25 @@ function App() {
     window.open(googleSearchURL, "_blank");
   };
 
+  const handleTypeChange = (event) => {
+    setSelectedType(event.target.value);
+  };
+
   return (
     <div className="App">
       <h1>Pokémon Carousel</h1>
+      <div className="type-selector">
+        <label htmlFor="type-select">Select Pokémon Type:</label>
+        <select id="type-select" value={selectedType} onChange={handleTypeChange}>
+          <option value="">All</option>
+          <option value="fire">Fire</option>
+          <option value="water">Water</option>
+          <option value="grass">Grass</option>
+          {/* Add more Pokémon types as needed */}
+        </select>
+      </div>
       <Slider {...sliderSettings}>
-        {pokemonData.map((pokemon) => (
+        {filteredPokemonData.map((pokemon) => (
           <div
             key={pokemon.id}
             onClick={() => openPokemonPage(pokemon.name)}
