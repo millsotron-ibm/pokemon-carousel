@@ -47,9 +47,12 @@ function App() {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 2000,
     slidesToShow: 3,
     slidesToScroll: 3,
+    stopOnHover: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
     prevArrow: <button className="carousel-nav">Previous</button>,
     nextArrow: <button className="carousel-nav">Next</button>,
   };
