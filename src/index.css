@@ -1,67 +1,179 @@
-.App {
-  text-align: center;
-  margin-top: 2rem;
+/* Import Google Fonts - Nintendo-inspired typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Fredoka:wght@400;600;700&display=swap');
+
+/* Global Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.slick-slider {
-  width: 90%;
-  margin: 0 auto;
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
 }
 
-.slick-slide {
-  position: relative;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-.slick-slide img {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
+/* Custom Scrollbar - Nintendo Style */
+::-webkit-scrollbar {
+  width: 12px;
 }
 
-.slick-slide:hover img {
-  transform: scale(1.2);
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
-.slick-slide p {
-  font-size: 1.5rem;
-  margin: 1rem 0;
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background-color: rgba(0, 0, 0, 0.3);
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #FFA500 0%, #FF6B6B 100%);
+}
+
+/* Selection Styling */
+::selection {
+  background: #FFD700;
+  color: #2c3e50;
+}
+
+::-moz-selection {
+  background: #FFD700;
+  color: #2c3e50;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Button Reset */
+button {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
   border: none;
-  color: white;
-  font-size: 2rem;
-  padding: 0.5rem;
-  cursor: pointer;
+  outline: none;
 }
 
-.carousel-prev {
-  left: 10px;
+/* Link Reset */
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-.carousel-next {
-  right: 10px;
+/* Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fredoka', 'Poppins', sans-serif;
+  font-weight: 700;
 }
 
-.carousel-nav button {
-  background-color: yellowgreen;
-  border: none; /* Update the border value */
-  color: blue;
-  font-size: 2rem;
-  padding: 0.5rem;
-  cursor: pointer;
+/* Input and Select Styling */
+input, select, textarea {
+  font-family: 'Poppins', sans-serif;
 }
 
-.pokemon-name {
-  font-size: 5rem;
+/* Focus Styles */
+*:focus {
+  outline: 3px solid #FFD700;
+  outline-offset: 2px;
 }
 
-.pokemon-data {
-  font-size: .5rem;
+/* Utility Classes */
+.text-center {
+  text-align: center;
 }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Loading Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #FFD700;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+  }
+  
+  .no-print {
+    display: none;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  body {
+    background: #000;
+    color: #fff;
+  }
+  
+  .pokemon-card {
+    border: 3px solid #fff;
+  }
+}
+
+/* Dark Mode Support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here */
+}
+
+/* Made with Bob */
